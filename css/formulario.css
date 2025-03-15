@@ -1,0 +1,102 @@
+/* Sección para volver a la pagina principal */
+
+.volverContenedor {
+    margin-top: 20px;
+    margin-left: 10px;
+    display: flex;
+    align-items: start;
+    font-size: 18px;
+}
+
+.iconoVolver {
+    margin: 0 3px;
+    padding: 3px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}   
+
+.volverAlSitio {
+    color: black;
+}
+
+/* Formulario */
+
+.formularioTitulo {
+    margin: auto;
+    padding: 20px 5px;
+    width: 800px;
+    background-color: #DDDDDD;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom: 3px solid #E7BA61;
+}
+
+.formularioTitulo > h1 {
+    font-size: 32px;
+}
+
+.formularioTitulo > h1 ~ h2 {
+    font-size: 18px;
+}
+
+.formularioTitulo > h1 ~ h4 {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.formularioContenedor  {
+    margin: auto;
+    padding: 20px 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 800px;
+    height: 400px;
+    background-color: #DDDDDD;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilos a los label´s e input´s */
+
+.formularioContenedor > input {
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 6px;
+    padding: 3px;
+}
+
+label {
+    padding: 10px 0;
+}
+
+.formularioBotones {
+    padding: 10px 5px;
+}
+
+.formularioBotones > button , input[type="submit"] {
+    padding: 6px 3px;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 6px;
+    background-color: #13192C;
+    color: white;
+    cursor: pointer;
+}
+
+.enviarToggle, .codigoToggle {
+    display: none;
+}
+
+/* Estilo al formulario agregado con JavaScript */
+
+.formularioNuevo {
+    margin-bottom: 20px;
+    padding: 5px 0;
+    height: 400px;
+    border-radius: 6px;
+}

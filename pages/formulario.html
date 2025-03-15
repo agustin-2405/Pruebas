@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de egreso</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/formulario.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <img class="logoArgentina" src="../assets/logo_argentina-azul.svg" alt="Argentina.gob.ar">
+            <div class="contenedorBusqueda">
+                <input type="search" placeholder="Buscá en el sitio">
+                <button class="botonBuscarContenedor"><img class="botonBuscar" src="../assets/mi--search.png" alt="Buscar"></button>
+            </div>
+            <a href="https://id.argentina.gob.ar/ingresar/?next=/authorize/%3Fclient_id%3D613410%26response_type%3Dcode%26scope%3Dopenid%2Bprofile%2Bemail%2Boptional%26redirect_uri%3Dhttps%3A//mi.argentina.gob.ar/_oauth/oidc%26state%3DeyJsb2dpblN0eWxlIjoicmVkaXJlY3QiLCJjcmVkZW50aWFsVG9rZW4iOiJ3VFFDV3JrWWhpdmpiTnR1ZCIsImlzQ29yZG92YSI6ZmFsc2UsInJlZGlyZWN0VXJsIjoiaHR0cHM6Ly9taS5hcmdlbnRpbmEuZ29iLmFyLyJ9">
+                <button class="botonMiArgentina">Mi Argentina</button>
+            </a>
+        </nav>
+    </header>
+    <div class="volverContenedor">
+        <a href="../index.html"><img class="iconoVolver" src="../assets/angulo-doble-izquierda.png" alt="Volver"></a>
+        <p><a class="volverAlSitio" href="../index.html">Regresar al sítio</a></p>
+    </div>
+    <div class="formularioTitulo">
+        <h1>FORMULARIO DE EGRESO</h1>
+        <h2>Todos los datos deben ser identicos al Documento Nacional de identidad</h2>
+        <h4>*El regristro es de 2 personas máximo. En ese caso, marcar el check*</h4>
+    </div>
+    <form class="formularioContenedor" id="persona-1">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" name="nombre">
+        <label for="apellido">Apellidos</label>
+        <input id="apellido" type="text" name="apellido">
+        <label for="documento">N° de documento</label>
+        <input id="documento" type="number" name="documento" min="6">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input id="fechaNacimiento" type="date" name="fechaNacimiento">
+        <label for="destino">Lugar de destino</label>
+        <input id="destino" type="text" name="destino">
+        <div class="formularioBotones">
+            <label for="agregarPersona">¿Quieres agregar otra persona?</label>
+            <input type="checkbox" name="agregarPersona" id="">
+            <input type="submit" class="enviarFormulario enviarOriginal" value="Enviar">
+        </div>
+        <div class="codigoGenerado inputVacio"></div>
+    </form>
+    <form class="formularioNuevo"></form>
+    <script src="../js/main.js"></script>
+    <script src="../js/datosFormulario.js"></script>
+</body>
+</html>
