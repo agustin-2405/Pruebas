@@ -1,43 +1,48 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const checkbox = document.querySelector('input[type="checkbox"]');
-    const formularioNuevo = document.querySelector('.formularioNuevo');
+document.addEventListener('DOMContentLoaded', () => {
+    const formulario = document.getElementById('persona-1');
+    const codigoDiv = formulario.querySelector('.codigoGenerado');
 
-    function agregarFormulario() {
-        formularioNuevo.innerHTML = `
-            <label for="nombre">Nombre</label>
-            <input id="nombre" type="text" name="nombre">
-            <label for="apellido">Apellidos</label>
-            <input id="apellido" type="text" name="apellido">
-            <label for="documento">N° de documento</label>
-            <input id="documento" type="number" name="documento" min="6">
-            <label for="fechaNacimiento">Fecha de Nacimiento</label>
-            <input id="fechaNacimiento" type="date" name="fechaNacimiento">
-            <label for="destino">Lugar de destino</label>
-            <input id="destino" type="text" name="destino">
-            <div class="formularioBotones">
-                <input type="submit" class="enviarFormulario" value="Enviar">
-            </div>
-            <div class="codigoGenerado inputVacio"></div>
-        `;
-        formularioNuevo.classList.add('formularioContenedor');
-    }
-
-    checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-            agregarFormulario();
-        } else {
-            formularioNuevo.innerHTML = '';
-            formularioNuevo.classList.remove('formularioContenedor');
-        }
-    });
-
-    const formOriginal = document.querySelector('.formularioContenedor');
-    formOriginal.addEventListener('submit', (event) => {
+    formulario.addEventListener('submit', function(event) {
         event.preventDefault();
-        enviarDatosFormularios();
-    });
 
-    function generarCodigoAleatorio() {
+         // Validar campos vacíos
+        const nombre = formulario.nombre.value.trim();
+        const apellido = formulario.apellido.value.trim();
+        const documento = formulario.documento.value.trim();
+        const fechaNacimiento = formulario.fechaNacimiento.value.trim();
+        const destino = formulario.destino.value.trim();
+
+        if (!nombre || !apellido || !documento || !fechaNacimiento || !destino) {
+            codigoDiv.textContent = "Por favor, completa todos los campos.";
+            codigoDiv.classList.add('error');
+        return;
+        }
+
+        const codigo = generarCodigoAleatorio();
+
+        // Mostrar el código en pantalla
+        codigoDiv.textContent = `Código generado: ${codigo}`;
+
+        // Obtener los datos del formulario
+        const datos = {
+            nombre: formulario.nombre.value,
+            apellido: formulario.apellido.value,
+            documento: formulario.documento.value,
+            fechaNacimiento: formulario.fechaNacimiento.value,
+            destino: formulario.destino.value,
+            codigo: codigo
+        };
+
+        // Guardar en localStorage
+        const datosFormulario = JSON.parse(localStorage.getItem('datosFormulario')) || [];
+        datosFormulario.push(datos);
+        localStorage.setItem('datosFormulario', JSON.stringify(datosFormulario));
+
+        formulario.reset();
+    });
+});
+
+function generarCodigoAleatorio() {
         const numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
         const letras = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'ñ', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
         const caracteres = numeros.concat(letras); 
@@ -54,8 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let todosLosDatos = [];
         let formularioVacio = false;
 
-        // Generar un solo código aleatorio si hay más de un formulario o si el checkbox está marcado
-        const codigoAleatorio = (formularios.length > 1 || checkbox.checked) ? generarCodigoAleatorio() : null;
+        const codigoAleatorio = generarCodigoAleatorio()
 
         formularios.forEach(formulario => {
             const formData = new FormData(formulario);
@@ -71,13 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!formularioVacio && codigoAleatorio) {
                 formularioDatos['codigo'] = codigoAleatorio;
                 const codigoGenerado = formulario.querySelector('.codigoGenerado');
-                if (codigoGenerado && (formulario === formOriginal || checkbox.checked)) {
-                    codigoGenerado.innerHTML = `El código generado es: ${codigoAleatorio}`;
+                codigoGenerado.innerHTML = `El código generado es: ${codigoAleatorio}`;
                 }
-            }
-
-            todosLosDatos.push(formularioDatos);
-        });
+            },
+            todosLosDatos.push(formularioDatos));
+        };
 
         if (!formularioVacio) {
             console.log(todosLosDatos);
@@ -106,9 +108,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const formulario = document.querySelector('.formularioContenedor');
             const inputVacio = formulario.querySelector('.inputVacio');
             inputVacio.innerHTML = `Por favor, complete todos los campos`;
-            inputVacio.classList.toggle('error', true);
+            inputVacio.classList.toggle('error');
         }
-    }
 
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('enviarFormulario')) {
@@ -116,4 +117,3 @@ document.addEventListener('DOMContentLoaded', function() {
             enviarDatosFormularios();
         }
     });
-});

@@ -88,15 +88,6 @@ label {
     cursor: pointer;
 }
 
-.enviarToggle, .codigoToggle {
-    display: none;
-}
-
-/* Estilo al formulario agregado con JavaScript */
-
-.formularioNuevo {
-    margin-bottom: 20px;
-    padding: 5px 0;
-    height: 400px;
-    border-radius: 6px;
+.error{
+    color: red;
 }
